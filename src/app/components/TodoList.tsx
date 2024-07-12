@@ -1,27 +1,14 @@
 import React, { FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { ITodo } from "../types/todo";
-import { addTodo, checkTodo, deleteTodo, setText } from "../reducer/todo";
+import { checkTodo, deleteTodo, setText } from "../reducer/todo";
 
 const TodoList = () => {
-  const { todos, form } = useSelector((state: RootState) => state.todo);
+  const { todos } = useSelector((state: RootState) => state.todo);
   const dispatch = useDispatch();
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     dispatch(setText(e.currentTarget.value));
-  };
-
-  const handleAddTodo = () => {
-    if (form.text) {
-      const newTodo: ITodo = {
-        text: form.text,
-        id: todos.length + 1,
-        isCheck: false,
-      };
-      dispatch(addTodo(newTodo));
-      dispatch(setText(""));
-    }
   };
 
   const handleCheck = (id: number) => {

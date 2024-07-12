@@ -24,7 +24,7 @@ export const PasswordForm = () => {
   return (
     <section className="password__form mb-10">
       <form className="flex flex-col gap-y-3" onSubmit={handleSubmit(onSubmit)}>
-        <p>Password</p>
+        <p className="flex mt-5">Password</p>
         <div>
           <input
             type="password"

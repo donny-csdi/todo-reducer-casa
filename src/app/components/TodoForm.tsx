@@ -1,7 +1,7 @@
-import React, { FormEvent } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { addTodo, setText } from "../reducer/todo";
+import { addTodo } from "../reducer/todo";
 import { ITodo } from "../types/todo";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -14,16 +14,13 @@ const todoSchema = yup.object({
 });
 
 const TodoForm = () => {
-  const { todos, form } = useSelector((state: RootState) => state.todo);
+  const { todos } = useSelector((state: RootState) => state.todo);
+
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, watch, reset } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(todoSchema),
   });
-
-  const values = watch("text");
-
-  console.log(values);
 
   const onSubmit = (data: any) => {
     const newTodo: ITodo = {
